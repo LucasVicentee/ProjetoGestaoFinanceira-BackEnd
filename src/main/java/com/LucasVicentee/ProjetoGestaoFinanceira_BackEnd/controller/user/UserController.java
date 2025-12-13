@@ -1,9 +1,10 @@
-package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.controller;
+package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.controller.user;
 
-import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.UserCreateDTO;
-import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.UserResponseDTO;
-import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.mapper.UserMapper;
-import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.service.UserService;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.user.UserCreateDTO;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.user.UserResponseDTO;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.mapper.user.UserMapper;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.service.user.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class UserController {
     private UserMapper mapper;
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserResponseDTO create(@RequestBody UserCreateDTO dto) {
+    public UserResponseDTO create(@Valid @RequestBody UserCreateDTO dto) {
         return service.create(dto);
     }
 

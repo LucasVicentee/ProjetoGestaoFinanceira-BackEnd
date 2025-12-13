@@ -1,4 +1,4 @@
-package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.model;
+package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.model.user;
 
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -23,7 +23,7 @@ public class User {
     @Column(name = "last_name", nullable = false, length = 150)
     private String lastName;
 
-    @Column(name = "email", nullable = false, length = 120)
+    @Column(name = "email", nullable = false, unique = true, length = 120)
     private String email;
 
     @Column(name = "monthly_income")

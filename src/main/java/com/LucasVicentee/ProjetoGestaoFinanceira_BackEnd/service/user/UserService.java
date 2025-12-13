@@ -1,12 +1,12 @@
-package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.service;
+package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.service.user;
 
-import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.UserCreateDTO;
-import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.UserResponseDTO;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.user.UserCreateDTO;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.user.UserResponseDTO;
 import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.exceptions.RequiredObjectIsNullException;
 import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.exceptions.ResourceNotFoundException;
-import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.mapper.UserMapper;
-import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.model.User;
-import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.repository.UserRepository;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.mapper.user.UserMapper;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.model.user.User;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,20 +27,22 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public UserResponseDTO create(UserCreateDTO dto) {
+    public UserResponseDTO create(UserCreateDTO user) {
 
-        if (dto == null) throw new RequiredObjectIsNullException();
+        if (user == null) throw new RequiredObjectIsNullException();
 
         logger.info("Creating a new User!");
-        User user = mapper.toEntity(dto);
-        user.setPassword(passwordEncoder.encode(user.getPassword())); // Pega a senha passada "crua" pelo usuário e codifica
-        User saved = repository.save(user); // Salva no repositório
-        return mapper.toDTO(saved); // Retorna a entidade convertida em DTO (sem senha)
+        User entity = mapper.toEntity(user);
+        entity.setPassword(passwordEncoder.encode(entity.getPassword())); // Pega a senha passada "crua" pelo usuário e codifica
+        User savedEntity = repository.save(entity); // Salva no repositório
+        return mapper.toDTO(savedEntity); // Retorna a entidade convertida em DTO (sem senha)
     }
 
     public boolean checkPassword(String rawPassWord, String storedHashedPassword) {
         return passwordEncoder.matches(rawPassWord, storedHashedPassword); // Verifica se a senha que o usuário digitar é igual ao do armazenado no banco em Hash no momento do Login
     }
+
+
 
     public void delete(Long id) {
         logger.info("Deleting a User!");

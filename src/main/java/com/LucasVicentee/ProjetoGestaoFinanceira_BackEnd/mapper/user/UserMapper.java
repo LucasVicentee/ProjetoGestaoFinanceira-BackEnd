@@ -1,8 +1,8 @@
-package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.mapper;
+package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.mapper.user;
 
-import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.UserCreateDTO;
-import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.UserResponseDTO;
-import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.model.User;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.user.UserCreateDTO;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.user.UserResponseDTO;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.model.user.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

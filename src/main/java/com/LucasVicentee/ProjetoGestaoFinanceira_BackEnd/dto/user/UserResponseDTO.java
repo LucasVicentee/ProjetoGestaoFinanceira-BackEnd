@@ -1,4 +1,4 @@
-package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto;
+package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

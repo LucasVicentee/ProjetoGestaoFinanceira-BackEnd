@@ -2,7 +2,8 @@ package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.service;
 
 import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.UserCreateDTO;
 import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.UserResponseDTO;
-import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.exceptions.user.ResourceNotFoundException;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.exceptions.RequiredObjectIsNullException;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.exceptions.ResourceNotFoundException;
 import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.mapper.UserMapper;
 import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.model.User;
 import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.repository.UserRepository;
@@ -27,14 +28,13 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public UserResponseDTO create(UserCreateDTO dto) {
+
+        if (dto == null) throw new RequiredObjectIsNullException();
+
         logger.info("Creating a new User!");
-
         User user = mapper.toEntity(dto);
-
         user.setPassword(passwordEncoder.encode(user.getPassword())); // Pega a senha passada "crua" pelo usuário e codifica
-
         User saved = repository.save(user); // Salva no repositório
-
         return mapper.toDTO(saved); // Retorna a entidade convertida em DTO (sem senha)
     }
 

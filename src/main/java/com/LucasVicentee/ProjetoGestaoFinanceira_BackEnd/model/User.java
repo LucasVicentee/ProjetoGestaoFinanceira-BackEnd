@@ -43,11 +43,13 @@ public class User {
 
     }
 
-    public User(Long id, String firstName, String lastName, String email, String password, LocalDateTime createdAt) {
+    public User(Long id, String firstName, String lastName, String email, BigDecimal monthlyIncome, BigDecimal currentBalance, String password, LocalDateTime createdAt) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.monthlyIncome = monthlyIncome;
+        this.currentBalance = currentBalance;
         this.password = password;
         this.createdAt = createdAt;
     }
@@ -82,6 +84,22 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public BigDecimal getMonthlyIncome() {
+        return monthlyIncome;
+    }
+
+    public void setMonthlyIncome(BigDecimal monthlyIncome) {
+        this.monthlyIncome = monthlyIncome;
+    }
+
+    public BigDecimal getCurrentBalance() {
+        return currentBalance;
+    }
+
+    public void setCurrentBalance(BigDecimal currentBalance) {
+        this.currentBalance = currentBalance;
     }
 
     public String getPassword() {

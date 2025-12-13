@@ -12,7 +12,7 @@ public interface UserMapper {
     @Mapping(target = "monthlyIncome", ignore = true) // Ignore para manter o default na Entidade
     @Mapping(target = "currentBalance", ignore = true)  // Ignore para manter o default na Entidade
     @Mapping(target = "createdAt", ignore = true) // Campo gerenciado pelo JPA
-
     User toEntity(UserCreateDTO dto);
+
     UserResponseDTO toDTO(User user);
 }

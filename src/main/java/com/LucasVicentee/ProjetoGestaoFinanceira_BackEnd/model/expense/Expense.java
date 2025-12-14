@@ -1,16 +1,16 @@
-package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.model.expensive;
+package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.model.expense;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@
+@Entity
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "tb_expense")
 public class Expense {
 
     @Id

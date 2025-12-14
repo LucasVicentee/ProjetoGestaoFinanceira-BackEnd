@@ -46,10 +46,10 @@ public class UserService {
     public UserResponseDTO updatePartially(Long id, UserUpdateDTO user) {
 
         if (user == null) {
-            throw new RequiredObjectIsNullException("O corpo da requisição não pode ser nulo.");
+            throw new RequiredObjectIsNullException("The request body cannot be null");
         }
 
-        logger.info("Updating partially user with ID: " + id); // <--- Usa o ID do parâmetro
+        logger.info("Updating partially user with ID: " + user.getId());
 
         User entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Records not found here!"));
 

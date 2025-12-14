@@ -1,5 +1,6 @@
 package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.model.expense;
 
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.model.user.User;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -12,6 +13,10 @@ import java.util.Objects;
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "tb_expense")
 public class Expense {
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

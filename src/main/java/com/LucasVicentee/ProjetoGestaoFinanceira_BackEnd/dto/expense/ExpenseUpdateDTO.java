@@ -14,6 +14,7 @@ public class ExpenseUpdateDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private Long id;
     private String expenseTitle;
     private BigDecimal expenseValue;
     private String expenseDescription;

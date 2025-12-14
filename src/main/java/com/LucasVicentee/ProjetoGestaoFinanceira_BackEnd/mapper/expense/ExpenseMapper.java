@@ -5,6 +5,8 @@ import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.expense.ExpenseResp
 import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.model.expense.Expense;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface ExpenseMapper {
 
@@ -12,4 +14,6 @@ public interface ExpenseMapper {
     Expense toEntity(ExpenseCreateDTO dto);
 
     ExpenseResponseDTO toDTO(Expense expense);
+
+    List<ExpenseResponseDTO> toListDTO(List<Expense> expenseList);
 }

@@ -32,7 +32,6 @@ public class UserController {
         return service.updatePartially(id, dto);
     }
 
-
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         service.delete(id);

@@ -5,9 +5,7 @@ import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.expense.ExpenseCrea
 import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.expense.ExpenseResponseDTO;
 import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.dto.expense.ExpenseUpdateDTO;
 import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.mapper.expense.ExpenseMapper;
-import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.model.expense.Expense;
 import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.service.expense.ExpenseService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

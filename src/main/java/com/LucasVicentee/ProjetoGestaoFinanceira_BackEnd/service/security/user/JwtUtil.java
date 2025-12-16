@@ -1,6 +1,10 @@
 package com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.service.security.user;
 
-import lombok.Value;
+import com.LucasVicentee.ProjetoGestaoFinanceira_BackEnd.config.JwtProperties;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -11,14 +15,14 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    @Value("${jwt.secret}")
-    private String secret;
+    private final JwtProperties jwtProperties;
 
-    @Value("${jwt.expiration.ms}")
-    private long jwtExpirationMs;
+    public JwtUtil(JwtProperties jwtProperties) {
+        this.jwtProperties = jwtProperties;
+    }
 
-    private Key getSigninKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(secret);
+    private Key getSigningKey() {
+        byte[] keyBytes = Decoders.BASE64.decode(jwtProperties.getSecret());
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
@@ -26,13 +30,11 @@ public class JwtUtil {
         UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
 
         return Jwts.builder()
-                // Assunto (Subject): O nome de usuário/email
                 .setSubject(userPrincipal.getUsername())
-                // Data de Emissão
                 .setIssuedAt(new Date())
-                // Data de Expiração
-                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
-                // Tipo de Algoritmo e Chave Secreta
+                .setExpiration(
+                        new Date(System.currentTimeMillis() + jwtProperties.getExpiration().getMs())
+                )
                 .signWith(getSigningKey(), SignatureAlgorithm.HS512)
                 .compact();
     }

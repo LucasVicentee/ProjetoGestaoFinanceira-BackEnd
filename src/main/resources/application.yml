@@ -11,6 +11,9 @@ spring:
       ddl-auto: none
     properties:
       hibernate:
-      #dialect: org.hibernate.dialect.MySQLDialect A própia IDE pede para não deixar esta linha para evitar Warning
     show-sql: false
     open-in-view: false
+jwt:
+  secret: c2VjcmV0LW11aXRvLXNlZ3VyYS1jb20tMzItYnl0ZXM=
+  expiration:
+    ms: 86400000
